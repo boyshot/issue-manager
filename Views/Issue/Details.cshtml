@@ -1,0 +1,59 @@
+﻿@model WebIssueManagementApp.Models.Issue
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Issue -> Details</h2>
+<hr />
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Code Issue
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UrlIssue)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Server)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Server)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DataBase)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DataBase)
+        </dd>
+        <dt class="col-sm-2">
+            Begin
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateBegin)
+        </dd>
+        <dt class="col-sm-2">
+            End
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateEnd)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Abstract)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Abstract)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Text)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Text)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+</div>

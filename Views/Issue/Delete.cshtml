@@ -1,0 +1,63 @@
+﻿@model WebIssueManagementApp.Models.Issue
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Issue -> Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <div>
+        <dl class="row">
+            <dt class="col-sm-2">
+                Code Issue
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UrlIssue)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Server)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Server)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DataBase)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DataBase)
+            </dd>
+            <dt class="col-sm-2">
+                Begin
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DateBegin)
+            </dd>
+            <dt class="col-sm-2">
+                End
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DateEnd)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Abstract)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Abstract)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Text)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Text)
+            </dd>
+        </dl>
+    </div>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+    </form>
+</div>

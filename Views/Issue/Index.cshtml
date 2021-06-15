@@ -1,0 +1,43 @@
+﻿@model IEnumerable<WebIssueManagementApp.Models.Issue>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <h1>View Issues <a asp-action="Create" class="btn btn-primary botaoCreate">New Issue</a></h1>
+</div>
+
+<div class="row">
+    <form asp-action="Index">
+        <div class="input-group mb-3">
+            <input type="text" name="txtFind" class="form-control" placeholder="Find Code Issue or Abstract">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Find</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<div class="row justify-content-center">
+    @foreach (var item in Model)
+    {
+        <div class="card border-primary mb-3 text-center cardSpace">
+            <div class="card-header">@Html.DisplayFor(modelItem => item.UrlIssue)</div>
+            <div class="card-body text-secondary">
+                <p class="card-text"> @Html.DisplayFor(modelItem => item.Abstract)</p>
+                <p class="card-text"> @Html.DisplayFor(modelItem => item.DateBegin) - @Html.DisplayFor(modelItem => item.DateEnd)</p>
+            </div>
+            <div class="card-footer text-primary text-center">
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+

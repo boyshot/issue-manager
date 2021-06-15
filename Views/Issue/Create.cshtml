@@ -1,0 +1,88 @@
+﻿@model WebIssueManagementApp.Models.Issue
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Issue -> Create</h2>
+<hr />
+
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="row formSpace">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label asp-for="UrlIssue" class="control-label">Code Issue</label>
+                <input asp-for="UrlIssue" class="form-control" />
+                <span asp-validation-for="UrlIssue" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-sm-8">
+            <div class="form-group">
+                <label asp-for="Abstract" class="control-label"></label>
+                <input asp-for="Abstract" class="form-control" />
+                <span asp-validation-for="Abstract" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row formSpace">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label asp-for="DateBegin" class="control-label"></label>
+                <input asp-for="DateBegin" class="form-control" />
+                <span asp-validation-for="DateBegin" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+
+            <div class="form-group">
+                <label asp-for="DateEnd" class="control-label"></label>
+                <input asp-for="DateEnd" class="form-control" />
+                <span asp-validation-for="DateEnd" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row formSpace">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label asp-for="DataBase" class="control-label"></label>
+                <input asp-for="DataBase" class="form-control" />
+                <span asp-validation-for="DataBase" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label asp-for="Server" class="control-label"></label>
+                <input asp-for="Server" class="form-control" />
+                <span asp-validation-for="Server" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row formSpace">
+        <div class="col-12">
+            <div class="form-group">
+                <label asp-for="Text" class="control-label"></label>
+                <textarea rows="10" asp-for="Text" class="form-control"></textarea>
+                <span asp-validation-for="Text" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row formSpace">
+
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
