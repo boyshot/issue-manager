@@ -9,8 +9,7 @@ namespace WebIssueManagementApp.Data
   {
     public DbSet<User> Users { get; set; }
     public DbSet<Issue> Issues { get; set; }
-
-    //public DbSet<Attachment> Attachments { get; set; }
+    public DbSet<Attachment> Attachments { get; set; }
 
     public ManagementIssueContext(DbContextOptions<ManagementIssueContext> options) : base(options) { } 
 
@@ -20,6 +19,7 @@ namespace WebIssueManagementApp.Data
 
       ConfigureEntityUser(modelBuilder.Entity<User>());
       ConfigureEntityIssue(modelBuilder.Entity<Issue>());
+      ConfigureEntityAttachment(modelBuilder.Entity<Attachment>());
     }
 
     private void ConfigureEntityUser(EntityTypeBuilder<User> buildUser)
@@ -41,7 +41,6 @@ namespace WebIssueManagementApp.Data
         .IsRequired()
         .HasMaxLength(100)
         .HasColumnType("varchar(100)");
-
 
       buildUser.HasData(
         new User 
@@ -87,6 +86,20 @@ namespace WebIssueManagementApp.Data
       .HasOne<User>()
       .WithMany()
       .HasForeignKey(fk => fk.IdUser);
+    }
+
+
+    private void ConfigureEntityAttachment(EntityTypeBuilder<Attachment> buildAttachment)
+    {
+      buildAttachment
+        .Property(b => b.FileName)
+        .HasMaxLength(100)
+        .HasColumnType("varchar(100)");
+
+      buildAttachment
+       .HasOne<Issue>()
+       .WithMany(b => b.ListAttachment)
+       .HasForeignKey(fk => fk.IdIssue);
     }
   }
 }

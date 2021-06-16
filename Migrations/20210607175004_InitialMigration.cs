@@ -53,11 +53,6 @@ namespace WebIssueManagementApp.Migrations
                 columns: new[] { "Id", "Email", "Name", "Password" },
                 values: new object[] { 1, "pauloandredarocha@gmail.com", "Paulo Rocha", "123456" });
 
-            migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "Id", "Email", "Name", "Password" },
-                values: new object[] { 2, "beatriz@gmail.com", "Beatriz Rocha", "654321" });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Issues_IdUser",
                 table: "Issues",

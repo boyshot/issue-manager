@@ -7,8 +7,10 @@ namespace WebIssueManagementApp.Models
 {
   public class Attachment : ModelBase
   {
-    public string IdIssue { get; set; }
+    public int IdIssue { get; set; }
 
-    public string Archive { get; set; }
+    public string FileName { get; set; }
+
+    public byte[] Content { get; set; }
   }
 }

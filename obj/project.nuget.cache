@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OMrNJwhAPhPPWZSWtMRjMajKpy7NslIwVaqVWeMg3Ph0PtCALQ1cP+RQTeMAx9rG8gQJ/owgmE/YK8zNiZFH5Q==",
+  "dgSpecHash": "q/Y9SffJf4XQRKsaQDMBu/qhQrXCFRrY7vhB9jpy75mxj3HE00XevtUCJ1gb6bC75QW5iLSrW5uF5h1l+kzdrA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\paulo.rocha\\Desktop\\Treinamento Web\\AppGestaoIssues\\web\\WebIssueManagementApp\\WebIssueManagementApp.csproj",
+  "projectFilePath": "C:\\Users\\paulo.rocha\\Desktop\\Treinamento Web\\AppGestaoIssues\\githubweb\\WebIssueManagementApp\\WebIssueManagementApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\paulo.rocha\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\paulo.rocha\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

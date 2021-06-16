@@ -7256,11 +7256,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\paulo.rocha\\Desktop\\Treinamento Web\\AppGestaoIssues\\web\\WebIssueManagementApp\\WebIssueManagementApp.csproj",
+      "projectUniqueName": "C:\\Users\\paulo.rocha\\Desktop\\Treinamento Web\\AppGestaoIssues\\githubweb\\WebIssueManagementApp\\WebIssueManagementApp.csproj",
       "projectName": "WebIssueManagementApp",
-      "projectPath": "C:\\Users\\paulo.rocha\\Desktop\\Treinamento Web\\AppGestaoIssues\\web\\WebIssueManagementApp\\WebIssueManagementApp.csproj",
+      "projectPath": "C:\\Users\\paulo.rocha\\Desktop\\Treinamento Web\\AppGestaoIssues\\githubweb\\WebIssueManagementApp\\WebIssueManagementApp.csproj",
       "packagesPath": "C:\\Users\\paulo.rocha\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\paulo.rocha\\Desktop\\Treinamento Web\\AppGestaoIssues\\web\\WebIssueManagementApp\\obj\\",
+      "outputPath": "C:\\Users\\paulo.rocha\\Desktop\\Treinamento Web\\AppGestaoIssues\\githubweb\\WebIssueManagementApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
