@@ -1,0 +1,26 @@
+﻿@model WebIssueManagementApp.Models.Issue
+
+@{
+    ViewData["Title"] = "Attachment";
+}
+
+<h2>Attachment</h2>
+
+<div class="row formSpace">
+    <form enctype="multipart/form-data" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-group">
+            <div class="input-group">
+
+                <input type="file" class="form-control" name="attachments" multiple>
+
+                <button asp-action="PostAttachment"
+                        class="btn btn-outline-secondary"
+                        type="submit">
+                    Save
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

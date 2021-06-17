@@ -870,3 +870,4 @@ C:\Users\paulo.rocha\Desktop\Treinamento Web\AppGestaoIssues\githubweb\WebIssueM
 C:\Users\paulo.rocha\Desktop\Treinamento Web\AppGestaoIssues\githubweb\WebIssueManagementApp\obj\Debug\net5.0\ref\WebIssueManagementApp.dll
 C:\Users\paulo.rocha\Desktop\Treinamento Web\AppGestaoIssues\githubweb\WebIssueManagementApp\obj\Debug\net5.0\WebIssueManagementApp.pdb
 C:\Users\paulo.rocha\Desktop\Treinamento Web\AppGestaoIssues\githubweb\WebIssueManagementApp\obj\Debug\net5.0\WebIssueManagementApp.genruntimeconfig.cache
+C:\Users\paulo.rocha\Desktop\Treinamento Web\AppGestaoIssues\githubweb\WebIssueManagementApp\obj\Debug\net5.0\Razor\Views\Issue\Attachment.cshtml.g.cs

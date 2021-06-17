@@ -48,6 +48,18 @@ namespace WebIssueManagementApp
     }
     private IRepository<Issue> issueRepository = null;
 
+    public IRepository<Attachment> AttachmentRepository
+    {
+      get
+      {
+        if (attachmentRepository == null)
+          attachmentRepository = new AttachmentRepository(_context);
+
+        return attachmentRepository;
+      }
+    }
+    private IRepository<Attachment> attachmentRepository = null;
+
     protected virtual void Dispose(bool disposing)
     {
       if (!this.disposed)

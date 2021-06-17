@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -15,13 +17,15 @@ namespace WebIssueManagementApp.Controllers
   {
     private IUnitOfWork unitOfWork { get; set; }
     private IRepository<Issue> issueRepository { get; set; }
-
+    private IRepository<Attachment> attachmentRepository { get; set; }
+    
     private int idUniqueUser = 1;
 
     public IssueController(IUnitOfWork unitOfWork)
     {
       this.unitOfWork = unitOfWork;
       this.issueRepository = this.unitOfWork.IssueRepository;
+      this.attachmentRepository = this.unitOfWork.AttachmentRepository;
     }
 
     public async Task<IActionResult> Index(string txtFind)
@@ -155,6 +159,44 @@ namespace WebIssueManagementApp.Controllers
       var issue = await issueRepository.Get(x => x.IdUser == idUniqueUser && x.Id == id);
 
       return issue != null;
+    }
+
+    public async Task<IActionResult> Attachment(int? id)
+    {
+      if (id == null)
+        return NotFound();
+
+      var issue = await issueRepository.Get(x => x.IdUser == idUniqueUser && x.Id == id.Value);
+
+      if (issue == null)
+        return NotFound();
+
+      return View(issue.FirstOrDefault());
+    }
+
+    public async Task<IActionResult> PostAttachment(int id, List<IFormFile> attachments)
+    {
+      if (attachments?.Any() == true)
+      {
+        foreach (var attach in attachments)
+        {
+          using (var memoryStream = new MemoryStream())
+          {
+            await attach.CopyToAsync(memoryStream);
+
+            var newAttach = new Attachment();
+            newAttach.IdIssue = id;
+            newAttach.FileName = attach.FileName;
+            newAttach.Content = memoryStream.ToArray();
+
+            this.attachmentRepository.Insert(newAttach);
+          }
+        }
+
+        await unitOfWork.Save();
+      }
+
+      return RedirectToAction(nameof(Attachment), new { id = id });
     }
   }
 }

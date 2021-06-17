@@ -10,6 +10,8 @@ namespace WebIssueManagementApp.Interface
 
     IRepository<Issue> IssueRepository { get; }
 
+    IRepository<Attachment> AttachmentRepository { get; }
+
     Task Save();
   }
 }
