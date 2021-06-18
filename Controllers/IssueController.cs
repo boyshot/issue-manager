@@ -35,7 +35,8 @@ namespace WebIssueManagementApp.Controllers
       if (!string.IsNullOrWhiteSpace(txtFind))
         issues = await issueRepository.Get(x => x.IdUser == idUniqueUser &&
                                                (x.UrlIssue.Contains(txtFind) ||
-                                                x.Abstract.Contains(txtFind)),
+                                                x.Abstract.Contains(txtFind) ||
+                                                x.Text.Contains(txtFind)),
                                                 y => y.OrderBy(z => z.DateBegin));
 
       if (issues == null || issues?.Count() <= 0)
@@ -166,12 +167,21 @@ namespace WebIssueManagementApp.Controllers
       if (id == null)
         return NotFound();
 
-      var issue = await issueRepository.Get(x => x.IdUser == idUniqueUser && x.Id == id.Value);
+      var listIssues = await issueRepository.Get(x => x.IdUser == idUniqueUser && x.Id == id.Value);
+
+      var issue = listIssues?.FirstOrDefault();
 
       if (issue == null)
         return NotFound();
 
-      return View(issue.FirstOrDefault());
+      var listAttach = await attachmentRepository.Get(x => x.IdIssue == issue.Id);
+
+      if (listAttach != null)
+        issue.ListAttachment = listAttach.ToList();
+      else
+        issue.ListAttachment = new List<Attachment>();
+
+      return View(issue);
     }
 
     public async Task<IActionResult> PostAttachment(int id, List<IFormFile> attachments)
@@ -197,6 +207,18 @@ namespace WebIssueManagementApp.Controllers
       }
 
       return RedirectToAction(nameof(Attachment), new { id = id });
+    }
+
+    public async Task<IActionResult> DeleteAttachment(int IdIssue, int IdAttach)
+    {
+      this.attachmentRepository.Delete(IdAttach);
+      await unitOfWork.Save();
+      return RedirectToAction(nameof(Attachment), new { id = IdIssue });
+    }
+
+    public async Task<IActionResult> DownloadAttachment(int IdIssue, int IdAttach)
+    {
+      return RedirectToAction(nameof(Attachment), new { id = IdIssue });
     }
   }
 }

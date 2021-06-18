@@ -1,12 +1,13 @@
 ﻿@model WebIssueManagementApp.Models.Issue
 
 @{
-    ViewData["Title"] = "Attachment";
+  ViewData["Title"] = "Attachment";
 }
 
-<h2>Attachment</h2>
+<h2>Issue -> Attachment</h2>
+<hr />
 
-<div class="row formSpace">
+<div class="row formSpace pb-3">
     <form enctype="multipart/form-data" method="post">
         <input type="hidden" asp-for="Id" />
 
@@ -24,3 +25,46 @@
         </div>
     </form>
 </div>
+
+<div class="table-responsive">
+
+    <table class="table">
+        <caption>List of Attachments</caption>
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Arquivo</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ int contador = 0; }
+
+            @foreach (var attach in Model.ListAttachment)
+            {
+                contador = contador + 1;
+
+                <tr>
+                    <th scope="row">@contador</th>
+                    <td>@attach.FileName</td>
+                    <td>   
+                        <form class="form-group" asp-action="DownloadAttachment">
+                            <input type="hidden" name="IdIssue" asp-for="@attach.IdIssue" />
+                            <input type="hidden" name="IdAttach" asp-for="@attach.Id" />
+                            <input type="submit" value="Download" class="btn btn-success botaoAction" />
+                        </form>
+
+                        <form class="form-group pt-2" asp-action="DeleteAttachment">
+                            <input type="hidden" name="IdIssue" asp-for="@attach.IdIssue" />
+                            <input type="hidden" name="IdAttach" asp-for="@attach.Id" />
+                            <input type="submit" value="Delete" class="btn btn-danger botaoAction" />
+                        </form>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
+

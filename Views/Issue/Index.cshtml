@@ -1,22 +1,29 @@
 ﻿@model IEnumerable<WebIssueManagementApp.Models.Issue>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Issues";
 }
 
-<div class="row">
-    <h1>View Issues <a asp-action="Create" class="btn btn-primary botaoCreate">New Issue</a></h1>
+<div class="row mb-3">
+    <h2>Issue -> View</h2>
 </div>
 
-<div class="row">
-    <form asp-action="Index">
-        <div class="input-group mb-3">
-            <input type="text" name="txtFind" class="form-control" placeholder="Find Code Issue or Abstract">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit">Find</button>
+<div class="row mb-3 justify-content-center">
+
+    <div class="col-sm-4 mb-3 w-auto">
+        <a asp-action="Create" class="btn btn-primary">New Issue</a>
+    </div>
+
+    <div class="col-sm-8">
+        <form asp-action="Index" class="form-group form-group-sm">
+            <div class="input-group">
+                <input type="text" name="txtFind" class="form-control" placeholder="Find code issue or text">
+                <div class="input-group-append ">
+                    <button class="btn btn-outline-secondary" type="submit">Find</button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 
 
