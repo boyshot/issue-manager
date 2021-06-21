@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -13,6 +14,8 @@ using WebIssueManagementApp.Models;
 
 namespace WebIssueManagementApp.Controllers
 {
+  [Authorize]
+
   public class IssueController : Controller
   {
     private IUnitOfWork unitOfWork { get; set; }
@@ -27,6 +30,7 @@ namespace WebIssueManagementApp.Controllers
       this.issueRepository = this.unitOfWork.IssueRepository;
       this.attachmentRepository = this.unitOfWork.AttachmentRepository;
     }
+
 
     public async Task<IActionResult> Index(string txtFind)
     {
@@ -60,11 +64,12 @@ namespace WebIssueManagementApp.Controllers
       return View(issue.FirstOrDefault());
     }
 
-    // GET: Issues/Create
+     // GET: Issues/Create
     public IActionResult Create()
     {
       return View();
     }
+
 
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -79,6 +84,7 @@ namespace WebIssueManagementApp.Controllers
       }
       return View(issue);
     }
+
 
     // GET: Issues/Edit/5
     public async Task<IActionResult> Edit(int? id)
@@ -98,6 +104,7 @@ namespace WebIssueManagementApp.Controllers
     // POST: Issues/Edit/5
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, [Bind("DataBase,Server,UrlIssue,DateBegin,DateEnd,Text,Abstract,Id")] Issue issue)
@@ -131,6 +138,7 @@ namespace WebIssueManagementApp.Controllers
       return View(issue);
     }
 
+
     // GET: Issues/Delete/5
     public async Task<IActionResult> Delete(int? id)
     {
@@ -146,6 +154,7 @@ namespace WebIssueManagementApp.Controllers
     }
 
     // POST: Issues/Delete/5
+
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)
@@ -161,6 +170,7 @@ namespace WebIssueManagementApp.Controllers
 
       return issue != null;
     }
+
 
     public async Task<IActionResult> Attachment(int? id)
     {
@@ -183,6 +193,7 @@ namespace WebIssueManagementApp.Controllers
 
       return View(issue);
     }
+
 
     public async Task<IActionResult> PostAttachment(int id, List<IFormFile> attachments)
     {

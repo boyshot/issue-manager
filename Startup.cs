@@ -32,6 +32,14 @@ namespace WebIssueManagementApp
 
       services.AddTransient<IUnitOfWork, UnitOfWork>();
 
+      services.AddAuthentication("CookieAuthentication")
+        .AddCookie("CookieAuthentication", config =>
+        {
+          config.Cookie.Name = "UserLoginCookie";
+          config.LoginPath = "/Login/UserLogin";
+          config.ReturnUrlParameter = "returnurl";
+        });
+
       services.AddControllersWithViews();
     }
 
@@ -53,13 +61,15 @@ namespace WebIssueManagementApp
 
       app.UseRouting();
 
+      app.UseAuthentication();
+
       app.UseAuthorization();
 
       app.UseEndpoints(endpoints =>
       {
         endpoints.MapControllerRoute(
                   name: "default",
-                  pattern: "{controller=Issue}/{action=Index}/{id?}");
+                  pattern: "{controller=Home}/{action=Index}/{id?}");
       });
     }
   }

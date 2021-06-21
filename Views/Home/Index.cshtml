@@ -1,8 +1,34 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h3>Issue Management System</h3>
+
+
+<div class="row">
+    @if (@ViewBag.authenticated)
+    {
+        <div class="col-4 mt-3">
+            <h4>Welcome: @ViewBag.user</h4>
+        </div>
+
+        <div class="col-2 mt-3">
+            <form method="post" asp-controller="Login" asp-action="Logout">
+                <input class="btn btn-link" type="submit" value="Logout" />
+            </form>
+        </div>
+    }
+    else
+    {
+        <div class="col-2 mt-3">
+            <a class="btn btn-link" asp-area="" asp-controller="Login" asp-action="UserLogin">Favor fazer o Login!</a>
+        </div>
+    }
 </div>
+
+
+
+
+
+
+
