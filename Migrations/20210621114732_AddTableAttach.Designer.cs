@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebIssueManagementApp.Data;
 
 namespace WebIssueManagementApp.Migrations
 {
     [DbContext(typeof(ManagementIssueContext))]
-    partial class ManagementIssueContextModelSnapshot : ModelSnapshot
+    [Migration("20210621114732_AddTableAttach")]
+    partial class AddTableAttach
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

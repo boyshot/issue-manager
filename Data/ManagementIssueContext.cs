@@ -97,6 +97,11 @@ namespace WebIssueManagementApp.Data
         .HasColumnType("varchar(100)");
 
       buildAttachment
+        .Property(b => b.ContentType)
+        .HasMaxLength(150)
+        .HasColumnType("varchar(150)");
+
+      buildAttachment
        .HasOne<Issue>()
        .WithMany(b => b.ListAttachment)
        .HasForeignKey(fk => fk.IdIssue);

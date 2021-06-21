@@ -49,15 +49,14 @@
                     <td>@attach.FileName</td>
                     <td>   
                         <form class="form-group" asp-action="DownloadAttachment">
-                            <input type="hidden" name="IdIssue" asp-for="@attach.IdIssue" />
                             <input type="hidden" name="IdAttach" asp-for="@attach.Id" />
-                            <input type="submit" value="Download" class="btn btn-success botaoAction" />
+                            <input type="submit" value="Download" class="btn btn-outline-success botaoAction" />
                         </form>
 
                         <form class="form-group pt-2" asp-action="DeleteAttachment">
                             <input type="hidden" name="IdIssue" asp-for="@attach.IdIssue" />
                             <input type="hidden" name="IdAttach" asp-for="@attach.Id" />
-                            <input type="submit" value="Delete" class="btn btn-danger botaoAction" />
+                            <input type="submit" value="Delete" class="btn btn-outline-danger botaoAction" />
                         </form>
                     </td>
                 </tr>

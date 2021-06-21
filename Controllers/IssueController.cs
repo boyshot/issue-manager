@@ -18,7 +18,7 @@ namespace WebIssueManagementApp.Controllers
     private IUnitOfWork unitOfWork { get; set; }
     private IRepository<Issue> issueRepository { get; set; }
     private IRepository<Attachment> attachmentRepository { get; set; }
-    
+
     private int idUniqueUser = 1;
 
     public IssueController(IUnitOfWork unitOfWork)
@@ -194,10 +194,13 @@ namespace WebIssueManagementApp.Controllers
           {
             await attach.CopyToAsync(memoryStream);
 
-            var newAttach = new Attachment();
-            newAttach.IdIssue = id;
-            newAttach.FileName = attach.FileName;
-            newAttach.Content = memoryStream.ToArray();
+            var newAttach = new Attachment
+            {
+              IdIssue = id,
+              FileName = attach.FileName,
+              Content = memoryStream.ToArray(),
+              ContentType = attach.ContentType
+            };
 
             this.attachmentRepository.Insert(newAttach);
           }
@@ -216,9 +219,16 @@ namespace WebIssueManagementApp.Controllers
       return RedirectToAction(nameof(Attachment), new { id = IdIssue });
     }
 
-    public async Task<IActionResult> DownloadAttachment(int IdIssue, int IdAttach)
+    public FileResult DownloadAttachment(int IdAttach)
     {
-      return RedirectToAction(nameof(Attachment), new { id = IdIssue });
+      var attach = this.attachmentRepository.GetById(IdAttach)?.Result;
+
+      if (attach != null)
+      {
+        return File(attach.Content, attach.ContentType, attach.FileName);
+      }
+
+      return null;
     }
   }
 }
