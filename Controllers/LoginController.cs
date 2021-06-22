@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -22,13 +23,15 @@ namespace WebIssueManagementApp.Controllers
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public ActionResult UserLogin()
     {
       return View();
     }
 
     [HttpPost]
-    public async Task<ActionResult> Login([Bind] User userLogin, [FromRoute] string returnurl)
+    [AllowAnonymous]
+    public async Task<IActionResult> Login(User userLogin, string returnUrl)
     {
       var users = await userRepository.Get(u => u.Email == userLogin.Email
       && u.Password == userLogin.Password);
@@ -40,6 +43,7 @@ namespace WebIssueManagementApp.Controllers
             //define o cookie
             new Claim(ClaimTypes.Name, users.FirstOrDefault().Name),
             new Claim(ClaimTypes.Email, users.FirstOrDefault().Email),
+            new Claim(ClaimTypes.PrimarySid, users.FirstOrDefault().Id.ToString()),
         };
 
         var myIdentity = new ClaimsIdentity(userClaims, "User");
@@ -49,9 +53,10 @@ namespace WebIssueManagementApp.Controllers
         //cria o cookie
         await HttpContext.SignInAsync(userMain);
 
-        //Ajustar para pegar QueryString do Parâmetros
+        if (!string.IsNullOrWhiteSpace(returnUrl))
+          return Redirect(returnUrl);
 
-        return RedirectToAction("Index", "Issue");
+        return RedirectToAction("Index", "Home");
       }
       ViewBag.Message = "Credenciais inválidas...";
 

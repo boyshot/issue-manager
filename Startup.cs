@@ -37,7 +37,6 @@ namespace WebIssueManagementApp
         {
           config.Cookie.Name = "UserLoginCookie";
           config.LoginPath = "/Login/UserLogin";
-          config.ReturnUrlParameter = "returnurl";
         });
 
       services.AddControllersWithViews();
