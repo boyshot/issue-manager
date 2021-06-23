@@ -30,14 +30,14 @@ namespace WebIssueManagementApp
       services.AddDbContext<ManagementIssueContext>(
         options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
 
-      services.AddTransient<IUnitOfWork, UnitOfWork>();
-
       services.AddAuthentication("CookieAuthentication")
         .AddCookie("CookieAuthentication", config =>
         {
           config.Cookie.Name = "UserLoginCookie";
           config.LoginPath = "/Login/UserLogin";
         });
+
+      services.AddTransient<IUnitOfWork, UnitOfWork>();
 
       services.AddControllersWithViews();
     }

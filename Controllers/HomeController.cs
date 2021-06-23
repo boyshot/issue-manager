@@ -20,27 +20,6 @@ namespace WebIssueManagementApp.Controllers
 
     public IActionResult Index()
     {
-      string user;
-      bool authenticated;
-      if (HttpContext.User.Identity.IsAuthenticated)
-      {
-        user = HttpContext.User.Identity.Name;
-        authenticated = true;
-      }
-      else
-      {
-        user = "Not Logged In";
-        authenticated = false;
-      }
-
-      ViewBag.user = user;
-      ViewBag.authenticated = authenticated;
-
-      return View();
-    }
-
-    public IActionResult Privacy()
-    {
       return View();
     }
 

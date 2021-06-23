@@ -1,33 +1,21 @@
 ﻿@{
     ViewData["Title"] = "Home";
 }
+<br />
+<br />
+<div class="row marcador align-items-center">
+    <div class="col mx-auto text-center">
+        <h3>Issue Management System</h3>
+        <img class="img-fluid" src="~/img/gerenciador-tarefas.jpg">
+    </div>
 
-<h3>Issue Management System</h3>
-
-
-<div class="row">
-    @if (@ViewBag.authenticated)
-    {
-        <div class="col-4 mt-3">
-            <h4>Welcome: @ViewBag.user</h4>
-        </div>
-
-        <div class="col-2 mt-3">
-            <form method="post" asp-controller="Login" asp-action="Logout">
-                <input class="btn btn-link" type="submit" value="Logout" />
-            </form>
-        </div>
-    }
-    else
-    {
-        <div class="col-2 mt-3">
-            <a class="btn btn-link" asp-area="" asp-controller="Login" asp-action="UserLogin">Favor fazer o Login!</a>
-        </div>
-    }
+    <ul class="list-group list-group-flush text-center">
+        <li class="list-group-item list-group-item-light">Manage Tasks</li>
+        <li class="list-group-item list-group-item-light">Attach Files</li>
+        <li class="list-group-item list-group-item-light">Document Your Tasks</li>
+        <li class="list-group-item list-group-item-light">Be Organized</li>
+    </ul>
 </div>
-
-
-
 
 
 

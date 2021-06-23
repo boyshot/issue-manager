@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -22,8 +23,6 @@ namespace WebIssueManagementApp.Controllers
     private IRepository<Issue> issueRepository { get; set; }
     private IRepository<Attachment> attachmentRepository { get; set; }
 
-    private int idUniqueUser = 1;
-
     public IssueController(IUnitOfWork unitOfWork)
     {
       this.unitOfWork = unitOfWork;
@@ -31,10 +30,11 @@ namespace WebIssueManagementApp.Controllers
       this.attachmentRepository = this.unitOfWork.AttachmentRepository;
     }
 
-
     public async Task<IActionResult> Index(string txtFind)
     {
       IEnumerable<Issue> issues = null;
+
+      int idUniqueUser = GetIdUserSession();
 
       if (!string.IsNullOrWhiteSpace(txtFind))
         issues = await issueRepository.Get(x => x.IdUser == idUniqueUser &&
@@ -56,6 +56,8 @@ namespace WebIssueManagementApp.Controllers
       if (id == null)
         return NotFound();
 
+      int idUniqueUser = GetIdUserSession();
+
       var issue = await issueRepository.Get(x => x.IdUser == idUniqueUser && x.Id == id.Value);
 
       if (issue == null)
@@ -75,7 +77,9 @@ namespace WebIssueManagementApp.Controllers
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create([Bind("DataBase,Server,UrlIssue,DateBegin,DateEnd,Text,Abstract,IdUser,Id")] Issue issue)
     {
-      if (ModelState.IsValid)
+      int idUniqueUser = GetIdUserSession();
+
+      if (ModelState.IsValid && idUniqueUser > 0)
       {
         issue.IdUser = idUniqueUser;
         issueRepository.Insert(issue);
@@ -91,6 +95,8 @@ namespace WebIssueManagementApp.Controllers
     {
       if (id == null)
         return NotFound();
+
+      int idUniqueUser = GetIdUserSession();
 
       var issue = await issueRepository.Get(
         x => x.IdUser == idUniqueUser && x.Id == id.Value);
@@ -114,7 +120,9 @@ namespace WebIssueManagementApp.Controllers
         return NotFound();
       }
 
-      if (ModelState.IsValid)
+      int idUniqueUser = GetIdUserSession();
+
+      if (ModelState.IsValid && idUniqueUser > 0)
       {
         try
         {
@@ -145,6 +153,8 @@ namespace WebIssueManagementApp.Controllers
       if (id == null)
         return NotFound();
 
+      int idUniqueUser = GetIdUserSession();
+
       var issue = await issueRepository.Get(x => x.IdUser == idUniqueUser && x.Id == id.Value);
 
       if (issue == null)
@@ -166,6 +176,8 @@ namespace WebIssueManagementApp.Controllers
 
     private async Task<bool> IssueExists(int id)
     {
+      int idUniqueUser = GetIdUserSession();
+
       var issue = await issueRepository.Get(x => x.IdUser == idUniqueUser && x.Id == id);
 
       return issue != null;
@@ -176,6 +188,8 @@ namespace WebIssueManagementApp.Controllers
     {
       if (id == null)
         return NotFound();
+
+      int idUniqueUser = GetIdUserSession();
 
       var listIssues = await issueRepository.Get(x => x.IdUser == idUniqueUser && x.Id == id.Value);
 
@@ -240,6 +254,18 @@ namespace WebIssueManagementApp.Controllers
       }
 
       return null;
+    }
+
+    private int GetIdUserSession()
+    {
+      if (HttpContext?.User?.Identity?.IsAuthenticated == true)
+      {
+        var claim = HttpContext.User?.Claims.FirstOrDefault(x => x.Type.Contains("primarysid"));
+        if (claim != null && !string.IsNullOrWhiteSpace(claim?.Value))
+          return Convert.ToInt32(claim.Value);
+      }
+
+      return -1;
     }
   }
 }
