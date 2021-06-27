@@ -39,7 +39,7 @@ namespace WebIssueManagementApp.Controllers
         {
           userRepository.Insert(user);
           await unitOfWork.Save();
-          return RedirectToAction(nameof(Index));
+          return RedirectToAction("UserLogin", "Login");
         }
       }
       return View(user);
@@ -48,7 +48,7 @@ namespace WebIssueManagementApp.Controllers
     private async Task<bool> UserExists(string email)
     {
       var user = await userRepository.Get(x => x.Email == email);
-      return user != null;
+      return user?.Any() == true;
     }
   }
 }

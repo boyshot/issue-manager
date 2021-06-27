@@ -26,6 +26,9 @@ namespace WebIssueManagementApp.Controllers
     [AllowAnonymous]
     public ActionResult UserLogin()
     {
+      if(HttpContext.User.Identity.IsAuthenticated)
+        return RedirectToAction("Index", "Home");
+
       return View();
     }
 
@@ -33,6 +36,9 @@ namespace WebIssueManagementApp.Controllers
     [AllowAnonymous]
     public async Task<IActionResult> Login(User userLogin, string returnUrl)
     {
+      if (HttpContext.User.Identity.IsAuthenticated)
+        return RedirectToAction("Index", "Home");
+
       var users = await userRepository.Get(u => u.Email == userLogin.Email
       && u.Password == userLogin.Password);
 

@@ -19,23 +19,13 @@
 @if (@ViewBag.authenticated)
 {
 
-    <div class="mt-3 ms-0">
-        <p class="nav-link text-dark">Welcome: @ViewBag.user</p>
-    </div>
-
-    <div class="mt-3 ms-0">
-        <form method="post" asp-controller="Login" asp-action="Logout">
-            <input class="btn btn-link link-dark" type="submit" value="Logout" />
-        </form>
-    </div>
-
-
+    <p class="nav-link text-dark text-center">Welcome: @ViewBag.user</p>
 }
 else
 {
-    <div>
-        <a class="btn btn-link link-dark"
-           asp-controller="Login"
-           asp-action="UserLogin">Welcome: Anonymous</a>
-    </div>
+
+    <a class="btn btn-link link-dark nav-link"
+       asp-controller="Login"
+       asp-action="UserLogin">Welcome: Anonymous</a>
+
 }
