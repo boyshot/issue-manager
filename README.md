@@ -15,3 +15,6 @@ Executar o projeto através do visual studio code ou visual studio 2019.
 Implementações, ajustes no código e aberturas de issues serão bem vindas.
 
 "Se está com medo em fazer algo, vá com medo mesmo e faça"
+
+Telas do App
+![Home](https://github.com/boyshot/WebIssueManagementApp/blob/main/Imagens%20Projeto/Tela001Home.png)
