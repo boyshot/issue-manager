@@ -75,13 +75,15 @@ body {
 }
 
 .cardSpace {
-    margin-left: 10px;
-    max-width: 18rem;
-    padding: 0;
+    max-width: 24rem;
 }
 
 .botaoAction {
     width:100px;
+}
+
+.inputfieldFind {
+    height: 50px
 }
 
 
