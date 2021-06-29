@@ -17,4 +17,18 @@ Implementações, ajustes no código e aberturas de issues serão bem vindas.
 "Se está com medo em fazer algo, vá com medo mesmo e faça"
 
 Telas do App
+
+HOME
 ![Home](https://github.com/boyshot/WebIssueManagementApp/blob/main/Imagens%20Projeto/Tela001Home.png)
+
+ISSUE
+![Issue](https://github.com/boyshot/WebIssueManagementApp/blob/main/Imagens%20Projeto/Tela001Issue.png)
+
+ISSUE EDIT
+![Issue -> Edit](https://github.com/boyshot/WebIssueManagementApp/blob/main/Imagens%20Projeto/Tela001IssueEdit.png)
+
+ISSUE Attach
+![Issue -> Attach](https://github.com/boyshot/WebIssueManagementApp/blob/main/Imagens%20Projeto/Tela001IssueAttach.png)
+
+LOGIN
+![Login](https://github.com/boyshot/WebIssueManagementApp/blob/main/Imagens%20Projeto/Tela001Login.png)
