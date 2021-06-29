@@ -1,7 +1,7 @@
 # WebIssueManagementApp
 Aplicativo para Gerenciamentos de Issues do Desenvolvedor
 
-Tecnologias: C#, EntityFramework, Razor, MVC, .NET core 5, Banco de Dados SQL Server.
+Tecnologias: C#, EntityFramework, Razor, MVC, .NET core 5, Banco de Dados SQL Server e Bootstrap 5.
 
 - Autenticação via Cookie
 - Armazenamento de arquivos
