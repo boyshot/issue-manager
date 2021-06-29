@@ -3,6 +3,9 @@ Aplicativo para Gerenciamentos de Issues do Desenvolvedor
 
 Tecnologias: C#, EntityFramework, Razor, MVC, .NET core 5, Banco de Dados SQL Server.
 
+- Autenticação via Cookie
+- Armazenamento de arquivos
+
 Padrões de Projetos: Repository, Unit of Work, DI, Orientação a Objetos.
 
 Para Instalar basta executar os scripts da pasta: 
