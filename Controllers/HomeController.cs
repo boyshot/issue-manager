@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using WebIssueManagementApp.Models;
-
+//Paulo Teste 1 
 namespace WebIssueManagementApp.Controllers
 {
   public class HomeController : Controller
