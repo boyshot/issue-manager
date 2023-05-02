@@ -6,9 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-//Teste 002
-
-//Paulo Teste 1 
 
 namespace WebIssueManagementApp
 {
@@ -27,3 +24,6 @@ namespace WebIssueManagementApp
             });
   }
 }
+
+//
+//

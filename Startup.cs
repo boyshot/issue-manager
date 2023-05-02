@@ -30,7 +30,7 @@ namespace WebIssueManagementApp
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddDbContext<ManagementIssueContext>(
-        options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
+        options => options.UseSqlServer(Configuration.GetConnectionString("my_connection")));
 
       services.AddAuthentication("CookieAuthentication")
         .AddCookie("CookieAuthentication", config =>
