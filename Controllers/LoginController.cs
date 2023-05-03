@@ -22,11 +22,11 @@ namespace WebIssueManagementApp.Controllers
       this.userRepository = this.unitOfWork.UserRepository;
     }
 
-    [HttpGet]
+    [HttpGet("login")]
     [AllowAnonymous]
     public ActionResult UserLogin()
     {
-      if(HttpContext.User.Identity.IsAuthenticated)
+      if (HttpContext.User.Identity.IsAuthenticated)
         return RedirectToAction("Index", "Home");
 
       return View();
@@ -34,10 +34,19 @@ namespace WebIssueManagementApp.Controllers
 
     [HttpPost]
     [AllowAnonymous]
-    public async Task<IActionResult> Login(User userLogin, string returnUrl)
+    public async Task<IActionResult> Login(Login userLogin, string returnUrl)
     {
       if (HttpContext.User.Identity.IsAuthenticated)
         return RedirectToAction("Index", "Home");
+
+
+      if (!ModelState.IsValid)
+      {
+        TempData["Message"] = "Invalid data to login!";
+        return RedirectToAction("UserLogin");
+        //return View("UserLogin", userLogin);
+      }
+
 
       var users = await userRepository.Get(u => u.Email == userLogin.Email
       && u.Password == userLogin.Password);
@@ -59,14 +68,13 @@ namespace WebIssueManagementApp.Controllers
         //cria o cookie
         await HttpContext.SignInAsync(userMain);
 
-        if (!string.IsNullOrWhiteSpace(returnUrl))
-          return Redirect(returnUrl);
+        if (!string.IsNullOrWhiteSpace(returnUrl)) return Redirect(returnUrl);
 
         return RedirectToAction("Index", "Home");
       }
-      ViewBag.Message = "Credenciais inválidas...";
 
-      return RedirectToAction("UserLogin", "Login");
+      TempData["Message"] = "Invalid credentials!";
+      return RedirectToAction("UserLogin");
     }
 
     [HttpPost]

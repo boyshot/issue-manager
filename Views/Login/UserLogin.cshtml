@@ -1,14 +1,24 @@
-﻿@model WebIssueManagementApp.Models.User
+﻿@model WebIssueManagementApp.Models.Login
 
 @{
   ViewData["Title"] = "Login";
   var returnUrl = Context.Request.Query["ReturnUrl"];
 }
 
-<h2>Login</h2>
-<hr />
+<a class="link-dark" asp-controller="User" asp-action="Create">Are you new user?</a>
 
-<div class="row">
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-danger mt-3" role="alert">
+        @TempData["Message"]
+    </div>
+}
+
+<div class="row mt-2">
+    <h3>Sign in below</h3>
+</div>
+
+<div class="row mt-2">
     <div class="col-md-4">
         <form asp-route-returnurl="@returnUrl" asp-action="Login" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -23,14 +33,12 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group pt-3">
-                <input type="submit" value="Login" class="btn btn-default btn-primary" />
+                <input type="submit" value="Login" class="btn btn-dark" />
             </div>
         </form>
     </div>
 </div>
-<br />
-<h2>@ViewData["Message"]</h2>
 
-<a class="btn btn-dark"  asp-controller="User" asp-action="Create">New User</a>
-
-
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />      
+}

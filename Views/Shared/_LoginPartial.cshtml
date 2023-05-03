@@ -19,12 +19,12 @@
 @if (@ViewBag.authenticated)
 {
 
-    <p class="nav-link text-dark text-center">Welcome: @ViewBag.user</p>
+    <p class="text-dark text-center">Welcome: @ViewBag.user</p>
 }
 else
 {
 
-    <a class="btn btn-link link-dark nav-link"
+    <a class="btn btn-link link-dark nav-link text-center"
        asp-controller="Login"
        asp-action="UserLogin">Welcome: Anonymous</a>
 

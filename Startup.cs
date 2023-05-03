@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,12 +37,16 @@ namespace WebIssueManagementApp
         .AddCookie("CookieAuthentication", config =>
         {
           config.Cookie.Name = "UserLoginCookie";
-          config.LoginPath = "/Login/UserLogin";
+          config.LoginPath = "/login";
         });
 
       services.AddTransient<IUnitOfWork, UnitOfWork>();
 
-      services.AddControllersWithViews();
+      services.AddControllersWithViews().AddMvcOptions(options =>
+      {
+        options.MaxModelValidationErrors = 10;
+        options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(_ => "The field is required.");
+      });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
