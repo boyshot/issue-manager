@@ -22,6 +22,7 @@ namespace WebIssueManagementApp.Controllers
       this.userRepository = this.unitOfWork.UserRepository;
     }
 
+    [HttpGet("user/new")]
     public IActionResult Create()
     {
       return View();
