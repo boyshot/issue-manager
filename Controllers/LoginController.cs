@@ -8,6 +8,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using WebIssueManagementApp.Interface;
 using WebIssueManagementApp.Models;
+using WebIssueManagementApp.ViewModel;
 
 namespace WebIssueManagementApp.Controllers
 {
@@ -34,7 +35,7 @@ namespace WebIssueManagementApp.Controllers
 
     [HttpPost]
     [AllowAnonymous]
-    public async Task<IActionResult> Login(Login userLogin, string returnUrl)
+    public async Task<IActionResult> Login(LoginViewModel userLogin, string returnUrl)
     {
       if (HttpContext.User.Identity.IsAuthenticated)
         return RedirectToAction("Index", "Home");
@@ -44,29 +45,14 @@ namespace WebIssueManagementApp.Controllers
       {
         TempData["Message"] = "Invalid data to login!";
         return RedirectToAction("UserLogin");
-        //return View("UserLogin", userLogin);
       }
-
 
       var users = await userRepository.Get(u => u.Email == userLogin.Email
       && u.Password == userLogin.Password);
 
       if (users?.Any() == true)
       {
-        var userClaims = new List<Claim>()
-        {
-            //define o cookie
-            new Claim(ClaimTypes.Name, users.FirstOrDefault().Name),
-            new Claim(ClaimTypes.Email, users.FirstOrDefault().Email),
-            new Claim(ClaimTypes.PrimarySid, users.FirstOrDefault().Id.ToString()),
-        };
-
-        var myIdentity = new ClaimsIdentity(userClaims, "User");
-
-        var userMain = new ClaimsPrincipal(new[] { myIdentity });
-
-        //cria o cookie
-        await HttpContext.SignInAsync(userMain);
+        await CreateCookie(users);
 
         if (!string.IsNullOrWhiteSpace(returnUrl)) return Redirect(returnUrl);
 
@@ -75,6 +61,22 @@ namespace WebIssueManagementApp.Controllers
 
       TempData["Message"] = "Invalid credentials!";
       return RedirectToAction("UserLogin");
+    }
+
+    private async Task CreateCookie(IEnumerable<User> users)
+    {
+      var userClaims = new List<Claim>()
+        {
+            //define o cookie
+            new Claim(ClaimTypes.Name, users.FirstOrDefault().Name),
+            new Claim(ClaimTypes.Email, users.FirstOrDefault().Email),
+            new Claim(ClaimTypes.PrimarySid, users.FirstOrDefault().Id.ToString()),
+        };
+
+      //cria o cookie
+      await HttpContext.SignInAsync(
+        new ClaimsPrincipal(
+          new[] { new ClaimsIdentity(userClaims, "User") }));
     }
 
     [HttpPost]

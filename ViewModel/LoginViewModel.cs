@@ -1,11 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebIssueManagementApp.Models
+namespace WebIssueManagementApp.ViewModel
 {
-    public class Login
+    public class LoginViewModel
     {
         [Required(ErrorMessage = "The email must be informed!")]
         [EmailAddress(ErrorMessage = "The email is Invalid!")]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
 
 
