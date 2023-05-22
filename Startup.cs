@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Rewrite;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebIssueManagementApp.Configuration;
 using WebIssueManagementApp.Data;
 using WebIssueManagementApp.Interface;
 //Teste 002
@@ -32,6 +35,11 @@ namespace WebIssueManagementApp
     {
       services.AddDbContext<ManagementIssueContext>(
         options => options.UseSqlServer(Configuration.GetConnectionString("my_connection")));
+
+      services.Configure<RouteOptions>(options =>
+      {
+        options.LowercaseUrls = true;
+      });
 
       services.AddAuthentication("CookieAuthentication")
         .AddCookie("CookieAuthentication", config =>
@@ -62,6 +70,9 @@ namespace WebIssueManagementApp
         // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
         app.UseHsts();
       }
+
+      app.UseRewriter(new RewriteOptions().Add(new RedirectLowerCaseRule()));
+
       app.UseHttpsRedirection();
       app.UseStaticFiles();
 

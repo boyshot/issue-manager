@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -23,7 +22,7 @@ namespace WebIssueManagementApp.Controllers
       this.userRepository = this.unitOfWork.UserRepository;
     }
 
-    [HttpGet("login")]
+    [HttpGet("login/user")]
     [AllowAnonymous]
     public ActionResult UserLogin()
     {
