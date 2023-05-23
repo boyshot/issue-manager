@@ -1,10 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using WebIssueManagementApp.Interface;
 using WebIssueManagementApp.Models;
@@ -22,7 +17,7 @@ namespace WebIssueManagementApp.Controllers
       this.userRepository = this.unitOfWork.UserRepository;
     }
 
-    [HttpGet("user/new")]
+    [HttpGet("user/create")]
     public IActionResult Create()
     {
       return View();
@@ -42,8 +37,13 @@ namespace WebIssueManagementApp.Controllers
           await unitOfWork.Save();
           return RedirectToAction("UserLogin", "Login");
         }
+
+        TempData["Message"] = "User exists!";
+        return RedirectToAction("Create");
       }
-      return View(user);
+
+      TempData["Message"] = "invalid data!";
+      return RedirectToAction("Create");
     }
 
     private async Task<bool> UserExists(string email)

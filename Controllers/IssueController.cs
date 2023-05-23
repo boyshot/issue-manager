@@ -1,22 +1,19 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using WebIssueManagementApp.Data;
 using WebIssueManagementApp.Interface;
 using WebIssueManagementApp.Models;
 
 namespace WebIssueManagementApp.Controllers
 {
   [Authorize]
-
   public class IssueController : Controller
   {
     private IUnitOfWork unitOfWork { get; set; }
@@ -66,7 +63,7 @@ namespace WebIssueManagementApp.Controllers
       return View(issue.FirstOrDefault());
     }
 
-     // GET: Issues/Create
+    // GET: Issues/Create
     public IActionResult Create()
     {
       return View();

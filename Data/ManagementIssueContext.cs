@@ -43,7 +43,7 @@ namespace WebIssueManagementApp.Data
         .HasColumnType("varchar(100)");
 
       buildUser.HasData(
-        new User 
+        new User
         { 
           Id = 1, 
           Name = "Paulo Rocha",
