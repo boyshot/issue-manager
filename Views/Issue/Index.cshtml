@@ -1,50 +1,51 @@
-﻿@model IEnumerable<WebIssueManagementApp.Models.Issue>
+﻿@model List<WebIssueManagementApp.ViewModel.IssueViewModel>
 
 @{
-    ViewData["Title"] = "Issues";
+  ViewData["Title"] = "Issues";
 }
 
 <div class="row mt-3">
-    <div class="form-group ">
-        <a asp-action="Create" class="btn btn-dark">New Issue</a>
+  <form asp-action="Index" class="form-group">
+    <div class="input-group inputfieldFind">
+      <button class="btn btn-dark botaoAction" type="submit">Find</button>
+      <input type="text" name="txtFind" class="form-control" placeholder="Find code issue or text">
     </div>
+  </form>
+  <div class="form-group mt-5 ">
+    <a asp-action="Create" class="btn btn-dark">New Issue</a>
+  </div>
 
-    <form asp-action="Index" class="form-group mt-3">
-        <div class="input-group inputfieldFind">
-            <button class="btn btn-primary w-auto" type="submit">Find</button>
-            <input type="text" name="txtFind" class="form-control" placeholder="Find code issue or text">
-        </div>
-    </form>
 </div>
 
 
 <div class="row mt-2 row-cols-1 row-cols-md-3 g-4">
-    @foreach (var item in Model)
-    {
-        <div class="col">
+  @foreach (var item in Model)
+  {
+    <div class="col">
 
-            <div class="card h-100 w-100 border-secondary cardSpace" >
-                
-                <div class="card-header text-center">@Html.DisplayFor(modelItem => item.UrlIssue)</div>
-                
-                
-                <div class="card-body text-secondary">
-                    <p class="card-text"> @Html.DisplayFor(modelItem => item.Abstract)</p>
-                </div>
+      <div class="card h-100 w-100 border-secondary cardSpace">
 
-                <div class="card-footer bg-white border-0 text-center">
-                    <p class="card-text"> @Html.DisplayFor(modelItem => item.DateBegin) - @Html.DisplayFor(modelItem => item.DateEnd)</p>
-                </div>
-
-                <div class="card-footer text-primary text-center">
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
-                    <a asp-action="Attachment" asp-route-id="@item.Id">Attach</a>
-                </div>
-            </div>
+        <div class ="card-header text-center">
+            <span>@item.UrlIssue</span>
         </div>
-    }
+
+        <div class="card-body text-secondary">
+          <p class="card-text">@item.Abstract</p>
+        </div>
+
+        <div class="card-footer bg-white border-0 text-center">
+          <p class="card-text">@item.DateBegin.ToString("dd/MM/yyyy") - @item.DateEnd?.ToString("dd/MM/yyyy") </p>
+        </div>
+
+        <div class="card-footer text-primary text-center">
+          <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+          <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+          <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+          <a asp-action="Attachment" asp-route-id="@item.Id">Attach</a>
+        </div>
+      </div>
+    </div>
+  }
 </div>
 
 

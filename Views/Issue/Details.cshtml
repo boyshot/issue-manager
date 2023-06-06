@@ -4,54 +4,51 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Issue -> Details</h2>
-<hr />
-
 <div>
-    <dl class="row">
-        <dt class="col-sm-2">
-            Code Issue
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.UrlIssue)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Server)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Server)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DataBase)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DataBase)
-        </dd>
-        <dt class="col-sm-2">
-            Begin
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DateBegin)
-        </dd>
-        <dt class="col-sm-2">
-            End
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DateEnd)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Abstract)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Abstract)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Text)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Text)
-        </dd>
-    </dl>
+  <dl class="row">
+    <dt class="col-sm-2">
+      Code Issue
+    </dt>
+    <dd class="col-sm-10">
+      @Model.UrlIssue
+    </dd>
+    <dt class="col-sm-2">
+      <label asp-for="Server"></label>
+    </dt>
+    <dd class="col-sm-10">
+      @Model.Server
+    </dd>
+    <dt class="col-sm-2">
+      <label asp-for="DataBase"></label>
+    </dt>
+    <dd class="col-sm-10">
+      @Model.DataBase
+    </dd>
+    <dt class="col-sm-2">
+      <label asp-for="DateBegin"></label>
+    </dt>
+    <dd class="col-sm-10">
+      @Model.DateBegin.ToString("dd/MM/yy")
+    </dd>
+    <dt class="col-sm-2">
+      <label asp-for="DateEnd"></label>
+    </dt>
+    <dd class="col-sm-10">
+      @Model.DateEnd?.ToString("dd/MM/yy")
+    </dd>
+    <dt class="col-sm-2">
+      <label asp-for="Abstract"></label>
+    </dt>
+    <dd class="col-sm-10">
+      @Model.Abstract
+    </dd>
+    <dt class="col-sm-2">
+      <label asp-for="Text"></label>
+    </dt>
+    <dd class="col-sm-10 text-truncate">
+      @Model.Text
+    </dd>
+  </dl>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">Edit</a>

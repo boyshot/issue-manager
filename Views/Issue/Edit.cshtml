@@ -1,11 +1,8 @@
-﻿@model WebIssueManagementApp.Models.Issue
+﻿@model WebIssueManagementApp.ViewModel.IssueViewModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Issue";
 }
-
-<h2>Issue -> Edit</h2>
-<hr />
 
 <form asp-action="Edit">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -78,12 +75,12 @@
         <input type="hidden" asp-for="Id" />
 
         <div class="form-group">
-            <input type="submit" value="Save" class="btn btn-primary" />
-            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+      <input type="submit" value="Save" class="btn btn-dark" />
+      <a asp-action="Index" class="btn btn-dark">Cancel</a>
         </div>
     </div>
 </form>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+  <partial name="_ValidationScriptsPartial" />
 }

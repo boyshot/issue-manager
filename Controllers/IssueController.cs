@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebIssueManagementApp.Interface;
 using WebIssueManagementApp.Models;
+using WebIssueManagementApp.ViewModel;
 
 namespace WebIssueManagementApp.Controllers
 {
@@ -44,7 +45,20 @@ namespace WebIssueManagementApp.Controllers
         issues = await issueRepository.Get(x => x.IdUser == idUniqueUser,
           y => y.OrderBy(z => z.DateBegin), take: 10);
 
-      return View(issues);
+
+      if (issues?.Count() > 0)
+      {
+        var VmIssues = new List<IssueViewModel>();
+
+        foreach (Issue issue in issues)
+        {
+          VmIssues.Add(issue.toViewModel());
+        }
+
+        return View(VmIssues);
+      }
+
+      return View(new List<IssueViewModel>());
     }
 
     // GET: Issues/Details/5
@@ -101,7 +115,7 @@ namespace WebIssueManagementApp.Controllers
       if (issue == null)
         return NotFound();
 
-      return View(issue.FirstOrDefault());
+      return View(issue.FirstOrDefault()?.toViewModel());
     }
 
     // POST: Issues/Edit/5
@@ -140,7 +154,7 @@ namespace WebIssueManagementApp.Controllers
         }
         return RedirectToAction(nameof(Index));
       }
-      return View(issue);
+      return View(issue.toViewModel());
     }
 
 
@@ -157,7 +171,7 @@ namespace WebIssueManagementApp.Controllers
       if (issue == null)
         return NotFound();
 
-      return View(issue.FirstOrDefault());
+      return View(issue.FirstOrDefault().toViewModel());
     }
 
     // POST: Issues/Delete/5

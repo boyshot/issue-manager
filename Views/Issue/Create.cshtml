@@ -1,11 +1,8 @@
-﻿@model WebIssueManagementApp.Models.Issue
+﻿@model WebIssueManagementApp.ViewModel.IssueViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create new issue";
 }
-
-<h2>Issue -> Create</h2>
-<hr />
 
 <form asp-action="Create">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -84,5 +81,5 @@
 </form>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+  <partial name="_ValidationScriptsPartial" />
 }
