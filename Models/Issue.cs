@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using WebIssueManagementApp.ViewModel;
 
 namespace WebIssueManagementApp.Models
 { 
@@ -19,7 +20,7 @@ namespace WebIssueManagementApp.Models
     public DateTime DateBegin { get; set; }
 
     [DataType(DataType.Date)]
-    public DateTime DateEnd { get; set; }
+    public DateTime? DateEnd { get; set; }
 
     public string Text { get; set; }
 
@@ -30,5 +31,20 @@ namespace WebIssueManagementApp.Models
     //public User User { get; set; }
 
     public IList<Attachment> ListAttachment { get; set; }
+
+    public IssueViewModel toViewModel()
+    {
+      var vmIssue = new IssueViewModel();
+      vmIssue.Id = this.Id;
+      vmIssue.UrlIssue = this.UrlIssue;
+      vmIssue.Abstract = this.Abstract;
+      vmIssue.Text = this.Text;
+      vmIssue.DateBegin = this.DateBegin;
+      vmIssue.DateEnd = this.DateEnd;
+      vmIssue.IdUser = IdUser;
+
+      return vmIssue;
+    }
+
   }
 }

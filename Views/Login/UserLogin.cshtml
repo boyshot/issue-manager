@@ -5,20 +5,23 @@
   var returnUrl = Context.Request.Query["ReturnUrl"];
 }
 
-<a class="link-dark" asp-controller="User" asp-action="Create">Are you new user?</a>
+
+
+<div class="row"> 
+  <h3>Sign in below</h3>
+  <a class="link-dark mt-2" asp-controller="User" asp-action="Create">Are you new user?</a>
+</div>
+
+
 
 @if (TempData["Message"] != null)
 {
-    <div class="alert alert-danger mt-3" role="alert">
-        @TempData["Message"]
-    </div>
+  <div class="alert alert-danger mt-3" role="alert">
+    @TempData["Message"]
+  </div>
 }
 
-<div class="row mt-2">
-    <h3>Sign in below</h3>
-</div>
-
-<div class="row mt-2">
+<div class="row mt-3">
     <div class="col-md-4">
     <form asp-route-returnurl="@returnUrl" asp-action="Login" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
