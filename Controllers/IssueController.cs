@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebIssueManagementApp.Interface;
 using WebIssueManagementApp.Models;
+using WebIssueManagementApp.Repositories;
 using WebIssueManagementApp.ViewModel;
 
 namespace WebIssueManagementApp.Controllers
@@ -43,7 +44,7 @@ namespace WebIssueManagementApp.Controllers
 
       if (issues == null || issues?.Count() <= 0)
         issues = await issueRepository.Get(x => x.IdUser == idUniqueUser,
-          y => y.OrderBy(z => z.DateBegin), take: 10);
+          y => y.OrderByDescending(z => z.DateBegin), take: 6);
 
 
       if (issues?.Count() > 0)
@@ -52,7 +53,7 @@ namespace WebIssueManagementApp.Controllers
 
         foreach (Issue issue in issues)
         {
-          VmIssues.Add(issue.toViewModel());
+          VmIssues.Add(issue.ToViewModel());
         }
 
         return View(VmIssues);
@@ -83,23 +84,33 @@ namespace WebIssueManagementApp.Controllers
       return View();
     }
 
-
+    // POST: Issues/Create
+    // create a new issue
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("DataBase,Server,UrlIssue,DateBegin,DateEnd,Text,Abstract,IdUser,Id")] Issue issue)
+    public async Task<IActionResult> Create(IssueViewModel issueViewModel)
     {
       int idUniqueUser = GetIdUserSession();
 
       if (ModelState.IsValid && idUniqueUser > 0)
       {
+        var issue = new Issue();
         issue.IdUser = idUniqueUser;
+        issue.UrlIssue = issueViewModel.UrlIssue;
+        issue.Abstract = issueViewModel.Abstract;
+        issue.Text = issueViewModel.Text;
+        issue.DateBegin = issueViewModel.DateBegin;
+        issue.DateEnd = issueViewModel.DateEnd;
+        issue.Server = issueViewModel.Server;
+        issue.DataBase = issueViewModel.DataBase;
+
         issueRepository.Insert(issue);
         await unitOfWork.Save();
+
         return RedirectToAction(nameof(Index));
       }
-      return View(issue);
-    }
-
+      return View(issueViewModel);
+    } 
 
     // GET: Issues/Edit/5
     public async Task<IActionResult> Edit(int? id)
@@ -115,7 +126,7 @@ namespace WebIssueManagementApp.Controllers
       if (issue == null)
         return NotFound();
 
-      return View(issue.FirstOrDefault()?.toViewModel());
+      return View(issue.FirstOrDefault()?.ToViewModel());
     }
 
     // POST: Issues/Edit/5
@@ -124,9 +135,9 @@ namespace WebIssueManagementApp.Controllers
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("DataBase,Server,UrlIssue,DateBegin,DateEnd,Text,Abstract,Id")] Issue issue)
+    public async Task<IActionResult> Edit(int id, IssueViewModel issueViewModel)
     {
-      if (id != issue.Id)
+      if (id != issueViewModel.Id)
       {
         return NotFound();
       }
@@ -137,24 +148,25 @@ namespace WebIssueManagementApp.Controllers
       {
         try
         {
-          issue.IdUser = idUniqueUser;
+          var issue = issueRepository.GetById(idUniqueUser).Result;
+          issue.UrlIssue = issueViewModel.UrlIssue;
+          issue.Abstract = issueViewModel.Abstract;
+          issue.Text = issueViewModel.Text;
+          issue.DateBegin = issueViewModel.DateBegin;
+          issue.DateEnd = issueViewModel.DateEnd;
+          issue.Server = issueViewModel.Server;
+          issue.DataBase = issueViewModel.DataBase;
           issueRepository.Update(issue);
           await unitOfWork.Save();
         }
         catch (DbUpdateConcurrencyException)
         {
-          if (!IssueExists(issue.Id).Result)
-          {
-            return NotFound();
-          }
-          else
-          {
-            throw;
-          }
+          if (!IssueExists(issueViewModel.Id).Result) return NotFound();
+          throw;
         }
         return RedirectToAction(nameof(Index));
       }
-      return View(issue.toViewModel());
+      return View(issueViewModel);
     }
 
 
@@ -171,7 +183,7 @@ namespace WebIssueManagementApp.Controllers
       if (issue == null)
         return NotFound();
 
-      return View(issue.FirstOrDefault().toViewModel());
+      return View(issue.FirstOrDefault().ToViewModel());
     }
 
     // POST: Issues/Delete/5

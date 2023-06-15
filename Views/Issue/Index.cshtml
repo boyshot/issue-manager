@@ -38,10 +38,12 @@
         </div>
 
         <div class="card-footer text-primary text-center">
-          <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-          <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-          <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
-          <a asp-action="Attachment" asp-route-id="@item.Id">Attach</a>
+
+          <a asp-action="Edit" asp-route-id="@item.Id" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Edit</a> |
+          <a asp-action="Details" asp-route-id="@item.Id" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Details</a> |
+          <a asp-action="Delete" asp-route-id="@item.Id" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Delete</a> |
+          <a asp-action="Attachment" asp-route-id="@item.Id" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Attachment</a>
+
         </div>
       </div>
     </div>

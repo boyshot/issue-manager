@@ -32,18 +32,20 @@ namespace WebIssueManagementApp.Models
 
     public IList<Attachment> ListAttachment { get; set; }
 
-    public IssueViewModel toViewModel()
+    public IssueViewModel ToViewModel()
     {
-      var vmIssue = new IssueViewModel();
-      vmIssue.Id = this.Id;
-      vmIssue.UrlIssue = this.UrlIssue;
-      vmIssue.Abstract = this.Abstract;
-      vmIssue.Text = this.Text;
-      vmIssue.DateBegin = this.DateBegin;
-      vmIssue.DateEnd = this.DateEnd;
-      vmIssue.IdUser = IdUser;
-
-      return vmIssue;
+      return new IssueViewModel() 
+      { 
+        Server = this.Server, 
+        DataBase = this.DataBase, 
+        UrlIssue = this.UrlIssue, 
+        DateBegin = this.DateBegin, 
+        DateEnd = this.DateEnd, 
+        Text = this.Text, 
+        Abstract = this.Abstract, 
+        IdUser = this.IdUser, 
+        Id = this.Id 
+      };
     }
 
   }
