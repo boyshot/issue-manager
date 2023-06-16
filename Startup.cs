@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebIssueManagementApp.Data;
 using WebIssueManagementApp.Interface;
-
+using WebIssueManagementApp.Services;
 
 namespace WebIssueManagementApp
 {
@@ -24,8 +24,14 @@ namespace WebIssueManagementApp
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+      string connection =        
+      Configuration.GetConnectionString("docker_connection");
+     // Configuration.GetConnectionString("docker_local_connection");
+      //Configuration.GetConnectionString("my_connection");
+
+
       services.AddDbContext<ManagementIssueContext>(
-        options => options.UseSqlServer(Configuration.GetConnectionString("my_connection")));
+                options => options.UseSqlServer(connection));
 
       services.Configure<RouteOptions>(options =>
       {
@@ -61,6 +67,8 @@ namespace WebIssueManagementApp
         // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
         app.UseHsts();
       }
+      //Inicializar banco de dados
+      app.Migrate();
 
       app.UseHttpsRedirection();
       app.UseStaticFiles();
