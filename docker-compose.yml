@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  sqldata:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=teste@123
+    volumes:
+      - d:\dados\issue_bd:/var/opt/mssql/data
+    ports:
+      - "1450:1433"

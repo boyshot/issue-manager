@@ -51,7 +51,7 @@ namespace WebIssueManagementApp.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Email", "Name", "Password" },
-                values: new object[] { 1, "admin@issuemanager.com", "admin", "teste_@123" });
+                values: new object[] { 1, "admin@issuemanager.com", "admin", "teste@123" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Issues_IdUser",

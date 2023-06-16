@@ -46,9 +46,9 @@ namespace WebIssueManagementApp.Data
         new User
         { 
           Id = 1, 
-          Name = "Paulo Rocha",
-          Email = "pauloandredarocha@gmail.com", 
-          Password = "123456" 
+          Name = "admin",
+          Email = "admin@issuemanager.com", 
+          Password = "teste@123" 
         });
     }
 
