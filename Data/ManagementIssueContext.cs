@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Collections.Generic;
+using System;
 
 using WebIssueManagementApp.Models;
 
@@ -86,8 +88,30 @@ namespace WebIssueManagementApp.Data
       .HasOne<User>()
       .WithMany()
       .HasForeignKey(fk => fk.IdUser);
+
+      var fakeIssues = createIssuesFake(20);
+
+      buildIssues.HasData(fakeIssues.ToArray());
     }
 
+    private List<Issue> createIssuesFake(int quantity) {
+      var list = new List<Issue>();
+      for (int i = 0; i < quantity; i++)
+      {
+        list.Add(new Issue
+        {
+          Id = i + 1,
+          Abstract = $"Abstract {i}",
+          DataBase = $"DataBase {i}",
+          Server = $"Server {i}",
+          UrlIssue = $"UrlIssue {i}",
+          Text = $"Text {i}",
+          DateBegin = DateTime.Now.AddDays(i + 30),
+          IdUser = 1
+        });
+      }
+      return list;
+    }
 
     private void ConfigureEntityAttachment(EntityTypeBuilder<Attachment> buildAttachment)
     {
