@@ -1,5 +1,5 @@
 ## WebIssueManagementApp
-### Aplicativo para Gerenciamentos de Issues do Desenvolvedor
+### Aplicativo para gerenciamento de tarefas no apoio ao desenvolvedor
 
 #### Tecnologias: 
 1. C#
