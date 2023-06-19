@@ -7,6 +7,21 @@ Tecnologias: C#, EntityFramework, Razor, MVC, .NET core 6, Banco de Dados SQL Se
 
 Padrões de Projetos: Repository, Unit of Work, DI, Orientação a Objetos.
 
+Instruções para execução do projeto:
+
+Usuário default:
+usuário: admin@issuemanager.com
+senha: teste@123
+
+Execução da Aplicação utilizando docker compose
+
+Alterar o arquivo: docker-compose.yml
+
+em volumes: Inserir um diretório válido de seu computador para salvar os arquivos criados do banco de dados sql server. exemplo: c:\temp
+
+Executar o comando: docker-compose up --build
+
+
 Telas do App
 
 Home

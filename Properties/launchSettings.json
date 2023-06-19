@@ -5,6 +5,8 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
+        "DB_USER": "sa",
+        "DB_PASSWORD": "teste@123",
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"
       }
     },
@@ -13,9 +15,11 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
+        "DB_USER": "sa",
+        "DB_PASSWORD": "teste@123",
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"
       },
-      "dotnetRunMessages": "true",
+      "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:5001;http://localhost:5000"
     },
     "Docker": {
@@ -23,7 +27,14 @@
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
       "publishAllPorts": true,
-      "useSSL": true
+      "useSSL": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DB_HOST": "192.168.64.1",
+        "DB_USER": "sa",
+        "DB_PASSWORD": "teste@123",
+        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"
+      }
     }
   },
   "iisSettings": {

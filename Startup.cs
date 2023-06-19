@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 using WebIssueManagementApp.Data;
 using WebIssueManagementApp.Interface;
 using WebIssueManagementApp.Services;
@@ -24,11 +25,14 @@ namespace WebIssueManagementApp
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-      string connection =        
-      Configuration.GetConnectionString("docker_connection");
-     // Configuration.GetConnectionString("docker_local_connection");
-      //Configuration.GetConnectionString("my_connection");
 
+      Console.WriteLine("DB_HOST: " + UtilsService.GetLocalIPAddress());
+
+      string connection = string.Format(Configuration.GetConnectionString("connection_sql"),
+        Configuration["DB_HOST"] ?? UtilsService.GetLocalIPAddress(), 
+        Configuration["DB_PORT"] ?? "1433", //porta default do sql server
+        Configuration["DB_USER"], 
+        Configuration["DB_PASSWORD"]);
 
       services.AddDbContext<ManagementIssueContext>(
                 options => options.UseSqlServer(connection));
