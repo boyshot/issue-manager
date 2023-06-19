@@ -1,40 +1,64 @@
-# WebIssueManagementApp
-Aplicativo para Gerenciamentos de Issues do Desenvolvedor
+## WebIssueManagementApp
+### Aplicativo para Gerenciamentos de Issues do Desenvolvedor
 
-Tecnologias: C#, EntityFramework, Razor, MVC, .NET core 6, Banco de Dados SQL Server 2022 e Bootstrap 5.
+#### Tecnologias: 
+1. C#
+2. Entity Framework
+3. Aspnet
+4. NET Core 6
+5. SQL Server 2022
+6. Bootstrap 5.
+7. Autenticação\Autorização via Cookie
 
-- Autenticação\Autorização via Cookie
+#### Padrões de Projetos
+1. Repository
+2. Unit of Work
+3. Dependency injection
+4. Programação Orientação a Objetos.
 
-Padrões de Projetos: Repository, Unit of Work, DI, Orientação a Objetos.
+### Instruções para execução do projeto:
 
-Instruções para execução do projeto:
-
-Usuário default:
 usuário: admin@issuemanager.com
 senha: teste@123
 
-Execução da Aplicação utilizando docker compose
+#### Execução da Aplicação utilizando docker compose
 
 Alterar o arquivo: docker-compose.yml
 
-em volumes: Inserir um diretório válido de seu computador para salvar os arquivos criados do banco de dados sql server. exemplo: c:\temp
+volumes: Inserir um diretório válido de seu computador para salvar os arquivos criados do banco de dados sql server. exemplo: c:\temp
 
-Executar o comando: docker-compose up --build
+Executar o comando:
+```docker-compose up --build```
+
+#### Execução da Aplicação utilizando docker
+
+Executar o primeiro passo.
+
+Alterar o arquivo launchSettings.json Docker.environmentVariables.DB_HOST com o IP local do seu computador 
+
+Exemplo  ```"DB_HOST": "192.168.64.1"```
 
 
-Telas do App
+#### Execução da Aplicação utilizando ISS express ou executável
 
-Home
+Executar o primeiro passo.
+
+Executar a aplicação normalmente pelo visual studio ou vs code.
+
+
+### Telas do App
+
+#### Home
 ![Home](https://github.com/boyshot/WebIssueManagementApp/blob/main/ImageProject/Tela001Home.png)
 
-Issue
+#### Issue
 ![Issue](https://github.com/boyshot/WebIssueManagementApp/blob/main/ImageProject/Tela001Issue.png)
 
-Issue\edit
+#### Issue\edit
 ![Issue -> Edit](https://github.com/boyshot/WebIssueManagementApp/blob/main/ImageProject/Tela001IssueEdit.png)
 
-Issue\attach
+#### Issue\attach
 ![Issue -> Attach](https://github.com/boyshot/WebIssueManagementApp/blob/main/ImageProject/Tela001IssueAttach.png)
 
-login
+#### Login
 ![Login](https://github.com/boyshot/WebIssueManagementApp/blob/main/ImageProject/Tela001Login.png)
