@@ -23,10 +23,6 @@ senha: teste@123
 
 #### Execução da Aplicação utilizando docker compose
 
-Alterar o arquivo: docker-compose.yml
-
-volumes: Inserir um diretório válido de seu computador para salvar os arquivos criados do banco de dados sql server. exemplo: c:\temp
-
 Executar o comando:
 ```docker-compose up --build```
 
@@ -34,20 +30,18 @@ Executar o comando:
 
 Executar o primeiro passo.
 
-Alterar o arquivo launchSettings.json Docker.environmentVariables.DB_HOST com o IP local do seu computador 
+Alterar o arquivo launchSettings.json Docker.environmentVariables.DB_HOST com o ip local do seu computador 
 
 Exemplo  ```"DB_HOST": "192.168.64.1"```
-
 
 #### Execução da Aplicação utilizando ISS express ou executável
 
 Executar o primeiro passo.
 
-Executar a aplicação normalmente pelo visual studio ou vs code.
+Executar a aplicação normalmente pelo visual studio ou vscode.
 
 ### Apenas utilizar a aplicação
 Acessar o link: [dockehub image](https://hub.docker.com/r/paulorocha/par-issue-manager-app) e executar o arquivo docker compose localmente
-
 
 ### Telas do App
 
