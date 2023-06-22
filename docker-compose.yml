@@ -1,7 +1,6 @@
 version: '3.8'
 
 services:
-
   issuemanagerapp:
     build:
       context: .
@@ -23,6 +22,8 @@ services:
       SA_PASSWORD: teste@123
       MSSQL_PID: Express
     volumes:
-      - d:\dados\issue_bd:/var/opt/mssql/data
+      - issue_manager_app_vol:/var/opt/mssql/data
     ports:
       - "1433:1433"
+  volumes:
+     issuemanagerapp_vol:
