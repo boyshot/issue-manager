@@ -1,49 +1,51 @@
-## WebIssueManagementApp
-### Aplicativo para gerenciamento de tarefas no apoio ao desenvolvedor
+## Issue manager app
+### Task management application for developer support
 
-#### Tecnologias: 
-1. C#
-2. Entity Framework
-3. Aspnet
-4. NET Core 6
-5. SQL Server 2022
-6. Bootstrap 5.
-7. Autenticação\Autorização via Cookie
+#### Technologies: 
+1. c#
+2. entity framework core
+3. aspnet
+4. net core 6
+5. sql server 2022
+6. bootstrap 5.
+7. authentication\authorization with cookie
 
-#### Padrões de Projetos
+#### Design Patterns
 1. Repository
-2. Unit of Work
-3. Dependency injection
-4. Programação Orientação a Objetos.
+1. Unit of Work
+1. Dependency injection
+
+#### Architecture
+1. MVC
 
 ### Instruções para execução do projeto:
 
-usuário: admin@issuemanager.com
-senha: teste@123
+user: admin@issuemanager.com
+password: teste@123
 
-#### Execução da Aplicação utilizando docker compose
+#### Application execution using docker compose
 
-Executar o comando:
+Run the command:
 ```docker-compose up --build```
 
-#### Execução da Aplicação utilizando docker
+#### Application execution using docker
 
-Executar o primeiro passo.
+Run the first step.
 
-Alterar o arquivo launchSettings.json Docker.environmentVariables.DB_HOST com o ip local do seu computador 
+Change the file launchSettings.json Docker.environmentVariables.DB_HOST with your computer's local ip
 
-Exemplo  ```"DB_HOST": "192.168.64.1"```
+example  ```"DB_HOST": "192.168.64.1"```
 
-#### Execução da Aplicação utilizando ISS express ou executável
+#### Application execution using IIs or Executable 
 
-Executar o primeiro passo.
+Run the first step.
 
-Executar a aplicação normalmente pelo visual studio ou vscode.
+Run the application normally through visual studio or vscode.
 
-### Apenas utilizar a aplicação
-Acessar o link: [dockehub image](https://hub.docker.com/r/paulorocha/issue-manager) e executar o arquivo docker compose localmente
+### Just use the app
+Access the link: [dockehub image](https://hub.docker.com/r/paulorocha/issue-manager) e executar o arquivo docker compose localmente
 
-### Telas do App
+### Screen app
 
 #### Home
 ![Home](https://github.com/boyshot/WebIssueManagementApp/blob/main/ImageProject/Tela001Home.png)
