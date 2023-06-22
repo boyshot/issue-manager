@@ -18,7 +18,7 @@
 #### Architecture
 1. MVC
 
-### Instruções para execução do projeto:
+### Project admin access instructions
 
 user: admin@issuemanager.com
 password: teste@123
