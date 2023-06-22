@@ -41,7 +41,7 @@ Executar o primeiro passo.
 Executar a aplicação normalmente pelo visual studio ou vscode.
 
 ### Apenas utilizar a aplicação
-Acessar o link: [dockehub image](https://hub.docker.com/r/paulorocha/par-issue-manager-app) e executar o arquivo docker compose localmente
+Acessar o link: [dockehub image](https://hub.docker.com/r/paulorocha/issue-manager) e executar o arquivo docker compose localmente
 
 ### Telas do App
 
